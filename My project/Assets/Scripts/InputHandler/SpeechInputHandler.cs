@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,9 +7,18 @@ using Whisper.Utils;
 
 public class SpeechInputHandler : MonoBehaviour
 {
-    [SerializeField] private Button _startButton;
-    [SerializeField] private Button _stopButton;
-    [SerializeField] private List<string> _inputKeywords = new();
+    [SerializeField] private string[] _inputKeywords;
+
+    private char[] _separators =
+    {
+        ' ',
+        '.',
+        ',',
+        '!',
+        '?',
+        ';',
+        ':'
+    };
     
     public static SpeechInputHandler Instance;
     
@@ -22,18 +32,11 @@ public class SpeechInputHandler : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(Instance);
         }
         else
         { 
             Destroy(gameObject);
-        }
-        
-        DontDestroyOnLoad(Instance);
-        
-        if (_startButton != null && _stopButton != null)
-        {
-            _startButton.onClick.AddListener(StartRecording);
-            _stopButton.onClick.AddListener(StopRecording);
         }
         
         microphoneRecord.OnRecordStop += OnRecordStop;
@@ -44,32 +47,32 @@ public class SpeechInputHandler : MonoBehaviour
         var whisperRes = await whisper.GetTextAsync(record.Data, record.Frequency, record.Channels);
         var stringRes = whisperRes.Result;
 
-        var splitString = stringRes.Split(" ");
+        var splitString = stringRes.Split(_separators, StringSplitOptions.RemoveEmptyEntries);
 
-        for (int i = 0; i < splitString.Length; i++)
+        for (int i = 0; i < _inputKeywords.Length; i++)
         {
-            Debug.Log(splitString[i]);
-            
-            if (_inputKeywords.Contains(splitString[i]))
+            for (int c = 0; c < splitString.Length; c++)
             {
-                AddInputToQueue(splitString[i]);
-            }   
+                if (string.Equals(_inputKeywords[i], splitString[c], StringComparison.CurrentCultureIgnoreCase))
+                {
+                    AddInputToQueue(splitString[c]);
+                }   
+            }
         }
+        
+        MaskHandler.Instance.SetCurrentMaskTag();
     }
 
     private void AddInputToQueue(string keyword)
     {
-        InputQueue.Add(keyword);
+        InputQueue.Add(keyword.ToLower());
     }
 
-    public string RetrieveNextInput()
+    public List<string> RetrieveInputQueue()
     {
         if (InputQueue.Count >= 0)
         {
-            var retrievedInput = InputQueue[0];
-            InputQueue.RemoveAt(0);
-            
-            return retrievedInput;
+            return InputQueue;
         }
         
         return null;
