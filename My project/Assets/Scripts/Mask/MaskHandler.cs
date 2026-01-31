@@ -29,11 +29,11 @@ public class MaskHandler : MonoBehaviour
         {
             var nextInput = SpeechInputHandler.Instance.RetrieveInputQueue();
             
-            if (nextInput.Contains(_maskTags[i]))
+            if (nextInput[0] == _maskTags[i])
             {
                 _currentMaskTag = _maskTags[i];
                 
-                nextInput.Remove(_maskTags[i]);
+                SpeechInputHandler.Instance.RetrieveInputQueue().RemoveAt(0);
             }
         }
     }
