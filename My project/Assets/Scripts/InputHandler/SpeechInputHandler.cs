@@ -28,6 +28,8 @@ public class SpeechInputHandler : MonoBehaviour
             Destroy(gameObject);
         }
         
+        DontDestroyOnLoad(Instance);
+        
         if (_startButton != null && _stopButton != null)
         {
             _startButton.onClick.AddListener(StartRecording);
