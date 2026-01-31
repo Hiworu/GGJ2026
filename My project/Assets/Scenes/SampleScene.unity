@@ -521,6 +521,50 @@ Transform:
   - {fileID: 20558521}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &682827948
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 682827950}
+  - component: {fileID: 682827949}
+  m_Layer: 0
+  m_Name: SpeechRecognition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &682827949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 682827948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eeef987e6d3fd1c46acff738301c8415, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &682827950
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 682827948}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -7.0959797, y: -4.6032305, z: 6.135519}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -580,7 +624,6 @@ GameObject:
   m_Component:
   - component: {fileID: 877711907}
   - component: {fileID: 877711910}
-  - component: {fileID: 877711909}
   - component: {fileID: 877711908}
   m_Layer: 0
   m_Name: Third Person Camera
@@ -648,14 +691,6 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!81 &877711909
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 877711906}
-  m_Enabled: 1
 --- !u!20 &877711910
 Camera:
   m_ObjectHideFlags: 0
@@ -717,7 +752,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1503565054}
   - component: {fileID: 1503565057}
-  - component: {fileID: 1503565056}
   - component: {fileID: 1503565055}
   m_Layer: 0
   m_Name: First Person Camera
@@ -785,14 +819,6 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!81 &1503565056
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1503565053}
-  m_Enabled: 1
 --- !u!20 &1503565057
 Camera:
   m_ObjectHideFlags: 0
@@ -1038,3 +1064,4 @@ SceneRoots:
   - {fileID: 6790971464488415857}
   - {fileID: 2088200537295621116}
   - {fileID: 9019107320273697998}
+  - {fileID: 682827950}
