@@ -205,7 +205,7 @@
       "url": "https://packages.unity.com"
     },
     "com.whisper.unity": {
-      "version": "file:C:/UnityExternalPackages/whisper.unity-master/Packages/com.whisper.unity",
+      "version": "file:C:/Users/eliaf/Downloads/whisper.unity-master/whisper.unity-master/Packages/com.whisper.unity",
       "depth": 0,
       "source": "local",
       "dependencies": {}
