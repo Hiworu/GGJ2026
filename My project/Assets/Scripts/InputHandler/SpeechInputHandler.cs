@@ -15,7 +15,7 @@ public class SpeechInputHandler : MonoBehaviour
     public WhisperManager whisper;
     public MicrophoneRecord microphoneRecord;
     
-    public List<string> _inputQueue = new();
+    public List<string> InputQueue = new();
     
     private void Awake()
     {
@@ -33,7 +33,7 @@ public class SpeechInputHandler : MonoBehaviour
             _startButton.onClick.AddListener(StartRecording);
             _stopButton.onClick.AddListener(StopRecording);
         }
-
+        
         microphoneRecord.OnRecordStop += OnRecordStop;
     }
 
@@ -57,15 +57,15 @@ public class SpeechInputHandler : MonoBehaviour
 
     private void AddInputToQueue(string keyword)
     {
-        _inputQueue.Add(keyword);
+        InputQueue.Add(keyword);
     }
 
     public string RetrieveNextInput()
     {
-        if (_inputQueue.Count >= 0)
+        if (InputQueue.Count >= 0)
         {
-            var retrievedInput = _inputQueue[0];
-            _inputQueue.RemoveAt(0);
+            var retrievedInput = InputQueue[0];
+            InputQueue.RemoveAt(0);
             
             return retrievedInput;
         }
