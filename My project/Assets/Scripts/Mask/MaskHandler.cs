@@ -1,44 +1,41 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MaskHandler : MonoBehaviour
 {
     public static MaskHandler Instance;
+    [SerializeField] private string[] _maskTags;
 
-    private List<string> _maskTags;
     private string _currentMaskTag;
-
-    private SpeechInputHandler _speechInputHandler;
     
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(Instance);
         }
         else 
         {
             Destroy(gameObject);
         }
-        
-        DontDestroyOnLoad(Instance);
-        
-        _speechInputHandler = SpeechInputHandler.Instance;
     }
 
-    private void SetCurrentMaskTag()
+    public void SetCurrentMaskTag()
     {
-        for (int i = 0; i < _maskTags.Count; i++)
+        for (int i = 0; i < _maskTags.Length; i++)
         {
-            var nextInput = _speechInputHandler.RetrieveNextInput();
+            var nextInput = SpeechInputHandler.Instance.RetrieveInputQueue();
             
-            if (_maskTags.Contains(nextInput))
+            if (nextInput.Contains(_maskTags[i]))
             {
-                _currentMaskTag = nextInput;
+                _currentMaskTag = _maskTags[i];
+                
+                nextInput.Remove(_maskTags[i]);
             }
         }
-        
-        _currentMaskTag = tag;
     }
     
     public string GetCurrentMask()
