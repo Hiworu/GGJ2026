@@ -36,6 +36,7 @@ public class SoundManager : MonoBehaviour
     {
         _clipMap.TryGetValue(tag, out AudioClip clip);
         
-        _audioSource.PlayOneShot(clip);
+        _audioSource.clip = clip;
+        _audioSource.Play();
     }
 }
