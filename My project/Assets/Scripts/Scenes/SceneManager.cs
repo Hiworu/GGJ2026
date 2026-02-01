@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public class SceneManager : MonoBehaviour
 {
     public static SceneManager Instance;
-    [SerializeField] private Scene[] _scene;
+    [SerializeField] private string[] _scene;
     
     private void Awake()
     {
