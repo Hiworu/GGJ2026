@@ -21,6 +21,6 @@ public class SceneManager : MonoBehaviour
 
     public void LoadScene(int index)
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(index);
+        UnityEngine.SceneManagement.SceneManager.LoadScene(_scene[index]);
     }
 }
