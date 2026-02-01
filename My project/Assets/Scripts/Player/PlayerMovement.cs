@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
         {
             _t = Mathf.Clamp01(Time.deltaTime * _movementSpeed);
 
-            EntityJump(_startPoint, _endPoint, _arcHeight, _t);
+            transform.position = EntityJump(_startPoint, _endPoint, _arcHeight, _t);
             
             if (transform.position == _endPoint)
             {
