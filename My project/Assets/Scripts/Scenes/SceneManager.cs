@@ -23,4 +23,5 @@ public class SceneManager : MonoBehaviour
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(_scene[index]);
     }
+
 }
