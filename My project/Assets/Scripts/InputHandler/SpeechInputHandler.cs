@@ -56,7 +56,7 @@ public class SpeechInputHandler : MonoBehaviour
             {
                 if (string.Equals(_inputKeywords[i], splitString[c], StringComparison.CurrentCultureIgnoreCase))
                 {
-                    AddInputToQueue(splitString[c]);
+                    AddInputToQueue(splitString[c].ToLower());
                 }   
             }
         }
