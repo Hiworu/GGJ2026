@@ -14,11 +14,11 @@ public class PlayerTurner : MonoBehaviour
             {
                 if (_turnDirection == "left")
                 {
-                    other.transform.rotation = Quaternion.LookRotation(Vector3.left);
+                    other.transform.parent.rotation = Quaternion.LookRotation(Vector3.left);
                 }
                 else if (_turnDirection == "right")
                 {
-                    other.transform.rotation = Quaternion.LookRotation(Vector3.right);
+                    other.transform.parent.rotation = Quaternion.LookRotation(Vector3.right);
                 }
             }
         }
