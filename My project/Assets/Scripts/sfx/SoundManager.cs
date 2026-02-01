@@ -6,11 +6,11 @@ public class SoundManager : MonoBehaviour
 {
     [SerializeField] private List<string> _clipTags;
     [SerializeField] private List<AudioClip> _clips;
-
+    [SerializeField] private AudioSource _audioSource;
+    
     public static SoundManager Instance;
     
     private Dictionary<string, AudioClip> _clipMap;
-    private AudioSource _audioSource;
 
     private void Awake()
     {
@@ -35,7 +35,6 @@ public class SoundManager : MonoBehaviour
     public void PlayCorrespondingSound(string tag)
     {
         _clipMap.TryGetValue(tag, out AudioClip clip);
-        
         _audioSource.clip = clip;
         _audioSource.Play();
     }
