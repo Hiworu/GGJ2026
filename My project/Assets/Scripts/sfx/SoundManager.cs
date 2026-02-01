@@ -31,6 +31,11 @@ public class SoundManager : MonoBehaviour
         else
             Destroy(gameObject);
     }
+
+    public AudioSource GetAudioSource()
+    {
+        return _audioSource;
+    }
     
     public void PlayCorrespondingSound(string tag)
     {
