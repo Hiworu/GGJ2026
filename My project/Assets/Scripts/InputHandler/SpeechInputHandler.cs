@@ -16,7 +16,9 @@ public class SpeechInputHandler : MonoBehaviour
         '!',
         '?',
         ';',
-        ':'
+        ':',
+        '<',
+        '>'
     };
     
     public static SpeechInputHandler Instance;
