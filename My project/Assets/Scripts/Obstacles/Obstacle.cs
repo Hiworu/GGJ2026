@@ -4,27 +4,27 @@ using UnityEngine;
 public class Obstacle : MonoBehaviour
 {
     [SerializeField] private Obstacle_Data _data;
-    private Int16 _section;
+    [SerializeField] private float _vaultingSpeed;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            CheckMaskTag();
-        }
-    }
+            var arcHeight = gameObject.transform.position.y + 2;
+            var startPoint = other.transform.position;
+            var endPoint = transform.position + (other.transform.forward * 3);
+            
+            var currentMaskTag = MaskHandler.Instance.GetCurrentMask();
 
-    private void CheckMaskTag()
-    {
-        var currentMaskTag = MaskHandler.Instance.GetCurrentMask();
-
-        if (currentMaskTag == _data.ObstacleTag)
-        {
-            Debug.Log("Obstacle passed");
-        }
-        else
-        {
-            Debug.Log("Obstacle failed");
+            if (currentMaskTag == _data.ObstacleTag)
+            {
+                var playerMovement = other.gameObject.GetComponent<PlayerMovement>();
+                playerMovement.GetJumpParameters(startPoint, endPoint, arcHeight);
+            }
+            else
+            {
+                SceneManager.Instance.LoadScene(2);
+            }
         }
     }
 }
