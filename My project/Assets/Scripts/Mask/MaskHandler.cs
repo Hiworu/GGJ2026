@@ -25,15 +25,18 @@ public class MaskHandler : MonoBehaviour
 
     public void SetCurrentMaskTag()
     {
-        for (int i = 0; i < _maskTags.Length; i++)
+        var nextInput = SpeechInputHandler.Instance.RetrieveInputQueue();
+
+        if (nextInput.Count != 0)
         {
-            var nextInput = SpeechInputHandler.Instance.RetrieveInputQueue();
-            
-            if (nextInput[0] == _maskTags[i])
+            for (int i = 0; i < _maskTags.Length; i++)
             {
-                _currentMaskTag = _maskTags[i];
+                if (nextInput[0] == _maskTags[i])
+                {
+                    _currentMaskTag = _maskTags[i];
                 
-                SpeechInputHandler.Instance.RetrieveInputQueue().RemoveAt(0);
+                    SpeechInputHandler.Instance.RetrieveInputQueue().RemoveAt(0);
+                }
             }
         }
     }
