@@ -3,12 +3,6 @@ using UnityEngine;
 public class PlayerTurner : MonoBehaviour
 {
     [SerializeField] private string _turnDirection;
-
-    private enum _myTags
-    {
-        LEFT = -90,
-        RIGHT = 90
-    };
     
     private void OnTriggerEnter(Collider other)
     {
@@ -20,11 +14,11 @@ public class PlayerTurner : MonoBehaviour
             {
                 if (_turnDirection == "left")
                 {
-                    other.transform.rotation = Quaternion.Euler(0, transform.rotation.y + (float)_myTags.LEFT, 0);
+                    other.transform.rotation = Quaternion.LookRotation(Vector3.left);
                 }
                 else if (_turnDirection == "right")
                 {
-                    other.transform.rotation = Quaternion.Euler(0, transform.rotation.y + (float)_myTags.RIGHT, 0);
+                    other.transform.rotation = Quaternion.LookRotation(Vector3.right);
                 }
             }
         }
