@@ -2,14 +2,17 @@ using UnityEngine;
 
 public class IntroPlayer : MonoBehaviour
 {
-    [SerializeField] private string _introClipTag;
     [SerializeField] private AudioSource _audioSource;
     
-    private void Update()
+    private void Awake()
     {
-        if (!_audioSource.isPlaying)
-        {
-            SceneManager.Instance.LoadScene(1);
-        }
+        StartCoroutine(StartLevel());
+    }
+
+    private IEnumerator StartLevel()
+    {
+        yield return new WaitForSeconds(_audioSource.clip.length);
+
+        SceneManager.Instance.LoadScene(1);
     }
 }
