@@ -6,15 +6,11 @@ using UnityEngine.SceneManagement;
 public class IntroPlayer : MonoBehaviour
 {
     [SerializeField] private string _introClipTag;
-
-    private void Start()
-    {
-        SoundManager.Instance.PlayCorrespondingSound(_introClipTag);
-    }
-
+    [SerializeField] private AudioSource _audioSource;
+    
     private void Update()
     {
-        if (!SoundManager.Instance.GetAudioSource().isPlaying)
+        if (!_audioSource.isPlaying)
         {
             SceneManager.Instance.LoadScene(1);
         }
