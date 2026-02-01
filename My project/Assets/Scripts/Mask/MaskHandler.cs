@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,6 +5,9 @@ public class MaskHandler : MonoBehaviour
 {
     public static MaskHandler Instance;
     [SerializeField] private string[] _maskTags;
+    [SerializeField] private Image[] _maskImage;
+    [SerializeField] private Color _activeColor;
+    [SerializeField] private Color _inactiveColor;
 
     private string _currentMaskTag;
     
@@ -36,6 +37,18 @@ public class MaskHandler : MonoBehaviour
                     _currentMaskTag = _maskTags[i];
                 
                     SpeechInputHandler.Instance.RetrieveInputQueue().RemoveAt(0);
+
+                    for (int c = 0; c < _maskImage.Length; c++)
+                    {
+                        if (_maskImage[c].name == _maskTags[i])
+                        {
+                            _maskImage[c].color = _activeColor;
+                        }
+                        else
+                        {
+                            _maskImage[c].color = _inactiveColor;
+                        }
+                    }
                 }
             }
         }
