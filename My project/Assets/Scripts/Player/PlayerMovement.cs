@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if (!Physics.Raycast(transform.position, -transform.up, out RaycastHit hit, Mathf.Infinity))
+        if (!Physics.Raycast(transform.position, Vector3.down, Mathf.Infinity))
         {
             SceneManager.Instance.LoadScene(2);
         }
